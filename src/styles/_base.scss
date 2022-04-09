@@ -1,0 +1,67 @@
+html,
+body,
+#root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  @apply text-content-primary;
+  @apply font-medium;
+  @apply bg-elevation-primary;
+}
+
+.scroller {
+  overflow: hidden scroll;
+
+  &::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 4px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    min-height: 40px;
+    border: 4px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box;
+    @apply bg-elevation-secondary;
+  }
+}
+
+.scroller-thin {
+  overflow: hidden scroll;
+
+  &:hover {
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-clip: padding-box;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    min-height: 40px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: var(--background-secondary);
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+}
