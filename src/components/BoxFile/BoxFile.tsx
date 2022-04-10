@@ -24,7 +24,7 @@ const BoxFile: React.FC<IBoxFileProps> = ({
     <div
       key={id}
       className={`p-1 w-1/2 cursor-pointer sm:w-1/3 lg:w-1/4 ${
-        isDisabled ? "opacity-75 pointer-events-none" : ""
+        isDisabled ? "opacity-50 pointer-events-none" : ""
       }`}
       onClick={onClick}
     >

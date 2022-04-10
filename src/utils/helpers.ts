@@ -1,4 +1,5 @@
-import { EMediaQueries, TMediaQueriesBreakpoints } from "./../types/index";
+import { EMediaQueries, TMediaQueriesBreakpoints } from "types";
+
 export const getFileThumbnailSrc = (type: string, size: number) => {
   return `https://drive-thirdparty.googleusercontent.com/${size}/type/application/${type}`;
 };

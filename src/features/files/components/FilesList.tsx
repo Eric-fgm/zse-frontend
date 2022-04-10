@@ -42,6 +42,7 @@ const FilesList: React.FC<IFilesListProps> = (props) => {
               <Stack
                 spacing={16}
                 x="start"
+                y="center"
                 className={`pl-2 overflow-hidden ${cellSize}`}
               >
                 <FileThumbnail type={type} className="px-0.5" />
