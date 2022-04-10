@@ -1,25 +1,28 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import Stack from "components/Stack/Stack";
-import Table from "components/Table/Table";
-import Typography from "components/Typography/Typography";
-import { TCopyWorker } from "features/copyWorker/types";
-import CheckboxInput from "components/CheckboxInput/CheckboxInput";
-import SelectHeadingRow from "./SelectHeadingRow";
+import { useNavigate } from "react-router-dom";
 import useQuery from "hooks/useQuery";
 import useSelect from "hooks/useSelect";
+import { changeField, setCurrentStep } from "features/mailer/mailerSlice";
+import SelectHeadingRow from "features/copyWorker/components/SelectHeadingRow";
+import { TCopyWorker } from "features/copyWorker/types";
 import {
   fetchCopyWorker,
   selectCopyWorker,
   deleteCopyWorker,
   pinCopyWorker,
-} from "../copyWorkerSlice";
+} from "features/copyWorker/copyWorkerSlice";
+import Stack from "components/Stack/Stack";
+import Table from "components/Table/Table";
+import Typography from "components/Typography/Typography";
+import CheckboxInput from "components/CheckboxInput/CheckboxInput";
 import { formatDate } from "utils/helpers";
 
 export interface ICopyWorkerListProps {}
 
 const CopyWorkerList: React.FC<ICopyWorkerListProps> = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isLoading, copyWorker } = useQuery(fetchCopyWorker, selectCopyWorker);
   const {
     selectedEntities,
@@ -36,6 +39,12 @@ const CopyWorkerList: React.FC<ICopyWorkerListProps> = (props) => {
   const handlePin = async () => {
     dispatch(pinCopyWorker(Object.keys(selectedEntities).join()));
     handleUnselectAll();
+  };
+
+  const handleRecipientClick = (recipient: string) => async () => {
+    await dispatch(changeField({ name: "recipient", value: recipient }));
+    await dispatch(setCurrentStep(1));
+    navigate("/mailer");
   };
 
   return (
@@ -55,7 +64,12 @@ const CopyWorkerList: React.FC<ICopyWorkerListProps> = (props) => {
                 checked={selectedEntities[id]}
                 onChange={handleSelect(id)}
               />
-              <Typography className="text-rg truncate">{recipient}</Typography>
+              <Typography
+                className="text-rg truncate cursor-pointer"
+                onClick={handleRecipientClick(recipient)}
+              >
+                {recipient}
+              </Typography>
             </Stack>
           ),
         },

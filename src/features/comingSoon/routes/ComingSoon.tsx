@@ -1,6 +1,6 @@
+import React from "react";
 import Stack from "components/Stack/Stack";
 import Typography from "components/Typography/Typography";
-import React from "react";
 
 export interface IComingSoonProps {}
 

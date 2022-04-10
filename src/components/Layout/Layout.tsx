@@ -1,7 +1,7 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navigation from "features/navigation/components/Navigation";
 import Sidebar from "features/sidebar/components/Sidebar";
-import { Outlet } from "react-router-dom";
 import Scroller from "components/Scroller/Scroller";
 
 export interface ILayoutProps {}

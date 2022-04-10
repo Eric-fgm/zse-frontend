@@ -1,14 +1,15 @@
-import React, { useMemo } from "react";
+import React, { useLayoutEffect, useMemo } from "react";
 import Modal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFiles, selectFiles } from "features/files/filesSlice";
 import Icon from "components/Icon/Icon";
 import Scroller from "components/Scroller/Scroller";
 import Stack from "components/Stack/Stack";
 import Typography from "components/Typography/Typography";
-import { fetchFiles, selectFiles } from "features/files/filesSlice";
-import useQuery from "hooks/useQuery";
-import SolidCross from "icons/SolidCross";
-import SolidLoader from "icons/SolidLoader";
 import BoxFile from "components/BoxFile/BoxFile";
+import SolidLoader from "icons/SolidLoader";
+import SolidCross from "icons/SolidCross";
+import { GMAIL_RESTRICTIONS } from "utils/constants";
 
 export interface IFilePickerModalProps {
   value: string | string[];
@@ -44,7 +45,14 @@ const FilePickerModal: React.FC<IFilePickerModalProps> = ({
   setIsOpen,
   onChange,
 }) => {
-  const { isLoading, files } = useQuery(fetchFiles, selectFiles);
+  const dispatch = useDispatch();
+  const { isLoading, files } = useSelector(selectFiles);
+  // const { isLoading, files } = useQuery(fetchFiles, selectFiles);
+
+  useLayoutEffect(() => {
+    if (!isOpen || !!files.length) return;
+    dispatch(fetchFiles(""));
+  }, [isOpen]);
 
   const selectedEntities = useMemo(() => {
     const output: { [key: string]: boolean } = {};
@@ -98,6 +106,7 @@ const FilePickerModal: React.FC<IFilePickerModalProps> = ({
                   <BoxFile
                     key={fileProps.id}
                     isActive={selectedEntities[fileProps.id]}
+                    isDisabled={!GMAIL_RESTRICTIONS.extensions[fileProps.type]}
                     onClick={handleBoxFileClick(fileProps.id)}
                     {...fileProps}
                   />

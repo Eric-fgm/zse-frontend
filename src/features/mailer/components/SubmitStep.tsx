@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import { selectFormData } from "features/mailer/mailerSlice";
+import useRegisterInput from "features/mailer/hooks/useRegisterInput";
 import Input from "components/Input/Input";
 import Stack from "components/Stack/Stack";
 import SubmitButton from "components/SubmitButton/SubmitButton";
 import Typography from "components/Typography/Typography";
 import FilePickerModal from "components/FilePickerModal/FilePickerModal";
-import { useSelector } from "react-redux";
-import { selectFormData } from "../mailerSlice";
 import { RootState } from "app/store/store";
-import useRegisterInput from "../hooks/useRegisterInput";
 
 export interface ISubmitStepProps {
   isActive: boolean;

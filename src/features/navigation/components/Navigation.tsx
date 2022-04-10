@@ -1,18 +1,18 @@
 import React, { useContext, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
+import ThemeContext from "providers/theme/ThemeContext";
+import { fetchSearchResults } from "features/navigation/navigationSlice";
+import SearchResults from "features/navigation/components/SearchResults";
 import Icon from "components/Icon/Icon";
 import Logo from "components/Logo/Logo";
-import SolidMenu from "icons/SolidMenu";
 import SearchInput from "components/SearchInput/SearchInput";
 import Stack from "components/Stack/Stack";
-import ThemeContext from "providers/theme/ThemeContext";
-import SearchResults from "./SearchResults";
+import SolidMenu from "icons/SolidMenu";
 import SolidSettings from "icons/SolidSettings";
 import SolidHelp from "icons/SolidHelp";
 import SolidSearch from "icons/SolidSearch";
 import SolidCross from "icons/SolidCross";
-import { fetchSearchResults } from "../navigationSlice";
 
 export interface INavigationProps {}
 

@@ -1,8 +1,8 @@
-import { RootState } from "app/store/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ISendEmailPayload } from "../api/sendEmail";
-import { changeField } from "../mailerSlice";
+import { ISendEmailPayload } from "features/mailer/api/sendEmail";
+import { changeField } from "features/mailer/mailerSlice";
+import { RootState } from "app/store/store";
 
 export interface IUseRegisterInputOptions {}
 

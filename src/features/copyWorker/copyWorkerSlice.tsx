@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { deleteCopyWorkerApi } from "features/copyWorker/api/deleteCopyWorker";
+import { getAllCopyWorkerApi } from "features/copyWorker/api/getCopyWorker";
+import { pinCopyWorkerApi } from "features/copyWorker/api/pinCopyWorker";
+import { TCopyWorker, TPagination } from "features/copyWorker/types";
 import { RootState } from "app/store/store";
-import { deleteCopyWorkerApi } from "./api/deleteCopyWorker";
-import { getAllCopyWorkerApi } from "./api/getCopyWorker";
-import { pinCopyWorkerApi } from "./api/pinCopyWorker";
-import { TCopyWorker, TPagination } from "./types";
 
 const initialState: {
   byId: { [key: string]: TCopyWorker };

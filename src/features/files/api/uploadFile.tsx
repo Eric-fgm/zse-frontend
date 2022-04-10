@@ -1,6 +1,6 @@
 import { axios } from "lib/axios";
 import { sleep } from "utils/helpers";
-import { TFile } from "../types";
+import { TFile } from "features/files/types";
 
 export type TUploadFileChunk = {
   file: File;

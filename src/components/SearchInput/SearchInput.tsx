@@ -1,7 +1,7 @@
+import React from "react";
 import Icon from "components/Icon/Icon";
 import SolidMicrophone from "icons/SolidMicrophone";
 import SolidSearch from "icons/SolidSearch";
-import React from "react";
 
 export interface ISearchInputProps {}
 

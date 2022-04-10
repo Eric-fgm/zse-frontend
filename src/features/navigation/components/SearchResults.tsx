@@ -1,22 +1,36 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import Typography from "components/Typography/Typography";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import FileThumbnail from "features/files/components/FileThumbnail";
-import SolidBookmarks from "icons/SolidBookmarks";
-import SearchResultHint from "./SearchResultHint";
-import { selectHints } from "../navigationSlice";
+import SearchResultHint from "features/navigation/components/SearchResultHint";
+import { selectHints } from "features/navigation/navigationSlice";
+import { changeField, setCurrentStep } from "features/mailer/mailerSlice";
+import Typography from "components/Typography/Typography";
 import Icon from "components/Icon/Icon";
+import SolidBookmarks from "icons/SolidBookmarks";
 import SolidLoader from "icons/SolidLoader";
-import { API_URL } from "lib/axios";
+import { API_URL } from "utils/constants";
 
 export interface ISearchResultsProps {}
 
 const SearchResults: React.FC<ISearchResultsProps> = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { isLoading, files, copyWorker } = useSelector(selectHints);
 
-  const handleHintClick = (path: string) => () => {
+  const handleFileHintClick = (path: string) => () => {
     window.location.replace(path);
   };
+
+  const handleCopyWorkerHintClick =
+    ({ recipient, topic }: { recipient: string; topic: string }) =>
+    async () => {
+      await dispatch(changeField({ name: "recipient", value: recipient }));
+      await dispatch(changeField({ name: "topic", value: topic }));
+      await dispatch(setCurrentStep(2));
+      navigate("/mailer");
+    };
 
   return (
     <div
@@ -42,7 +56,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
                     />
                   }
                   text={name}
-                  onClick={handleHintClick(`${API_URL}/${path}`)}
+                  onClick={handleFileHintClick(`${API_URL}/${path}`)}
                 />
               ))}
             </>
@@ -52,7 +66,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
               <Typography.Span className="py-2 px-4 text-rg text-content-secondary">
                 Kopia robocza
               </Typography.Span>
-              {copyWorker.map(({ id, topic }) => (
+              {copyWorker.map(({ id, topic, recipient }) => (
                 <SearchResultHint
                   key={id}
                   icon={
@@ -62,6 +76,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
                     />
                   }
                   text={topic}
+                  onClick={handleCopyWorkerHintClick({ recipient, topic })}
                 />
               ))}
             </>

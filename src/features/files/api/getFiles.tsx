@@ -1,6 +1,6 @@
-import { axios } from "lib/axios";
 import { normalize, schema } from "normalizr";
-import { TFile, TPagination } from "../types";
+import { axios } from "lib/axios";
+import { TFile, TPagination } from "features/files/types";
 
 export interface IGetFilesResponse {
   files: TFile[];

@@ -2,8 +2,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import ThemeProvider from "providers/theme/ThemeProvider";
-import store from "app/store/store";
 import PublicRoutes from "routes/public";
+import store from "app/store/store";
 import "styles/main.scss";
 
 function App() {

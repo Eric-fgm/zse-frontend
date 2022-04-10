@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import FilesList from "features/files/components/FilesList";
+import { uploadFileRequest } from "features/files/filesSlice";
 import UploadButton from "components/UploadButton/UploadButton";
 import Chip from "components/Chip/Chip";
 import Stack from "components/Stack/Stack";
 import Typography from "components/Typography/Typography";
-import { useDispatch } from "react-redux";
-import { uploadFileRequest } from "../filesSlice";
 import Dropzone from "components/Dropzone/Dropzone";
 
 export interface IFilesProps {}

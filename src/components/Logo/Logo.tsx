@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Typography from "components/Typography/Typography";
-import SolidShield from "icons/SolidShield";
 import Stack from "components/Stack/Stack";
+import SolidShield from "icons/SolidShield";
 
 export interface ILogoProps {}
 

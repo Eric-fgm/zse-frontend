@@ -1,18 +1,18 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Icon from "components/Icon/Icon";
-import SolidBackArrow from "icons/SolidBackArrow";
-import Stack from "components/Stack/Stack";
-import Stepper from "components/Stepper/Stepper";
+import { sendEmail, setCurrentStep } from "features/mailer/mailerSlice";
 import RecipientStep from "features/mailer/components/RecipientStep";
 import TopicStep from "features/mailer/components/TopicStep";
 import SubmitStep from "features/mailer/components/SubmitStep";
+import Icon from "components/Icon/Icon";
+import Stack from "components/Stack/Stack";
+import Stepper from "components/Stepper/Stepper";
 import Scroller from "components/Scroller/Scroller";
-import SolidSend from "icons/SolidSend";
 import Typography from "components/Typography/Typography";
+import SolidSend from "icons/SolidSend";
+import SolidBackArrow from "icons/SolidBackArrow";
 import { RootState } from "app/store/store";
-import { sendEmail, setCurrentStep } from "../mailerSlice";
 
 export interface IMailerProps {}
 

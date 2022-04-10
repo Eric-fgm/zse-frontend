@@ -1,15 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import Table from "components/Table/Table";
+import useQuery from "hooks/useQuery";
 import FileThumbnail from "features/files/components/FileThumbnail";
+import {
+  deleteFiles,
+  fetchFiles,
+  selectFiles,
+  pinFile,
+} from "features/files/filesSlice";
+import OptionsPopover from "features/files/components/OptionsPopover";
+import { TFile } from "features/files/types";
+import Table from "components/Table/Table";
 import Stack from "components/Stack/Stack";
 import Typography from "components/Typography/Typography";
-import { TFile } from "features/files/types";
 import { formatBytes, formatDate } from "utils/helpers";
-import { deleteFiles, fetchFiles, selectFiles, pinFile } from "../filesSlice";
-import useQuery from "hooks/useQuery";
-import { API_URL } from "lib/axios";
-import OptionsPopover from "./OptionsPopover";
+import { API_URL } from "utils/constants";
 
 export interface IFilesListProps {}
 

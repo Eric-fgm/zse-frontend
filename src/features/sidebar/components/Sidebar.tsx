@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import SidebarItem from "features/sidebar/components/SidebarItem";
 import ThemeContext from "providers/theme/ThemeContext";
+import SidebarItem from "features/sidebar/components/SidebarItem";
 import SolidFile from "icons/SolidFile";
 import SolidBookmarks from "icons/SolidBookmarks";
 import SolidSend from "icons/SolidSend";

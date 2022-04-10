@@ -1,8 +1,8 @@
+import React, { useState } from "react";
+import { Popover } from "react-tiny-popover";
 import Icon from "components/Icon/Icon";
 import Typography from "components/Typography/Typography";
 import SolidMore from "icons/SolidMore";
-import React, { useState } from "react";
-import { Popover } from "react-tiny-popover";
 
 export interface IOptionsPopoverProps {
   options: { highlight?: boolean; text: string; onClick: () => void }[];

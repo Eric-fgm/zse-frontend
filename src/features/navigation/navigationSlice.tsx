@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "app/store/store";
 import { TCopyWorker } from "features/copyWorker/types";
 import { TFile } from "features/files/types";
-import { searchResultsApi } from "./api/searchResults";
+import { searchResultsApi } from "features/navigation/api/searchResults";
+import { RootState } from "app/store/store";
 
 const initialState: {
   hints: {

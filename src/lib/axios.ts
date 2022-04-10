@@ -1,6 +1,5 @@
 import Axios, { AxiosError, AxiosResponse } from "axios";
-
-export const API_URL = "https://api-zse.herokuapp.com";
+import { API_URL } from "utils/constants";
 
 export const axios = Axios.create({
   baseURL: API_URL,

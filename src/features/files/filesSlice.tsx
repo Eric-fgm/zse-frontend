@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getFilesApi } from "features/files/api/getFiles";
-import { RootState } from "app/store/store";
-import { TFile, TPagination } from "./types";
-import { deleteFilesApi } from "./api/deleteFiles";
-import { pinFileApi } from "./api/pinFile";
+import { TFile, TPagination } from "features/files/types";
+import { deleteFilesApi } from "features/files/api/deleteFiles";
+import { pinFileApi } from "features/files/api/pinFile";
 import {
   TUploadFileChunk,
   uploadFileChunksApi,
   uploadFileRequestApi,
-} from "./api/uploadFile";
+} from "features/files/api/uploadFile";
+import { RootState } from "app/store/store";
 
 const initialState: {
   byId: { [key: string]: TFile };

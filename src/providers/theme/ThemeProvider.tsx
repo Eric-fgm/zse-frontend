@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import debounce from "lodash.debounce";
 import ThemeContex from "providers/theme/ThemeContext";
-import { TMediaQueriesBreakpoints } from "types";
 import {
   getMediaQueriesBreakpoint,
   getMediaQueriesMinWidth,
 } from "utils/helpers";
+import { TMediaQueriesBreakpoints } from "types";
 
 export interface IThemeProviderProps {}
 

@@ -1,6 +1,6 @@
+import { axios } from "lib/axios";
 import { TCopyWorker } from "features/copyWorker/types";
 import { TFile } from "features/files/types";
-import { axios } from "lib/axios";
 
 export const searchResultsApi = async (payload: string) => {
   try {

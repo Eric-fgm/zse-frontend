@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
+import useRegisterInput from "features/mailer/hooks/useRegisterInput";
 import Input from "components/Input/Input";
 import Stack from "components/Stack/Stack";
 import Typography from "components/Typography/Typography";
 import SubmitButton from "components/SubmitButton/SubmitButton";
-import useRegisterInput from "../hooks/useRegisterInput";
 
 export interface IRecipientStepProps {
   isActive: boolean;

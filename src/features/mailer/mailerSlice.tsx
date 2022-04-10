@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { sendEmailApi, ISendEmailPayload } from "features/mailer/api/sendEmail";
 import { RootState } from "app/store/store";
-import { sendEmailApi, ISendEmailPayload } from "./api/sendEmail";
 
 const initialState: {
   recipient: string;

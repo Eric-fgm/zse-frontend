@@ -1,6 +1,6 @@
+import React from "react";
 import Icon from "components/Icon/Icon";
 import SolidLoader from "icons/SolidLoader";
-import React from "react";
 
 export interface ISubmitButtonProps {
   text: string;
