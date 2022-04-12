@@ -24,7 +24,7 @@ const Input = React.forwardRef<
     <input
       ref={ref}
       type={type}
-      className="px-4 w-full h-13 text-md bg-transparent border border-modifier-primary rounded outline-none placeholder:text-content-tertiary"
+      className="px-4 w-full h-13 text-full bg-transparent border border-modifier-primary rounded outline-none placeholder:text-content-tertiary"
       {...props}
     />
   );

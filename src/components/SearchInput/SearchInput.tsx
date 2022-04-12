@@ -50,7 +50,7 @@ const SearchInput = React.forwardRef<
         ref={ref}
         id={id}
         type={type}
-        className={`w-full h-12 text-md bg-transparent outline-none placeholder:text-content-tertiary ${className}`}
+        className={`w-full h-12 text-full bg-transparent outline-none placeholder:text-content-tertiary ${className}`}
         autoComplete="off"
         onChange={onChange}
         {...props}

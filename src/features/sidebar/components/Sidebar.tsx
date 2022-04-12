@@ -38,7 +38,11 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
   return (
     <div
       style={{ width: isSidebarOpened ? 248 : 0 }}
-      className="absolute h-full bg-elevation-primary border-r border-modifier-primary shadow-elevation-x z-30 transition-all overflow-hidden lg:relative lg:shadow-none"
+      className={`absolute h-full bg-elevation-primary border-modifier-primary transition-width overflow-hidden z-30 lg:relative lg:shadow-none ${
+        isSidebarOpened
+          ? "border-r shadow-elevation-x"
+          : "border-none shadow-none"
+      }`}
     >
       <div className="px-2 pt-4 flex-shrink-0 w-full">
         <div className="flex flex-col gap-0.5">

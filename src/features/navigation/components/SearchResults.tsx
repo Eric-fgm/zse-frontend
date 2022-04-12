@@ -34,7 +34,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
 
   return (
     <div
-      className="absolute -mt-1 pt-3 pb-2 top-full w-full bg-elevation-secondary rounded-b-lg"
+      className="absolute -mt-1.5 top-full w-full bg-elevation-secondary rounded-b-lg"
       onMouseDown={(event) => event.preventDefault()}
     >
       {isLoading ? (
@@ -43,7 +43,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
         <>
           {!!files.length && (
             <>
-              <Typography.Span className="py-2 px-4 text-rg text-content-secondary">
+              <Typography.Span className="pt-3 pb-2 px-4 text-rg text-content-secondary">
                 Pliki
               </Typography.Span>
               {files.map(({ id, name, type, path }) => (
@@ -63,7 +63,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
           )}
           {!!copyWorker.length && (
             <>
-              <Typography.Span className="py-2 px-4 text-rg text-content-secondary">
+              <Typography.Span className="pt-3 pb-1 px-4 text-rg text-content-secondary">
                 Kopia robocza
               </Typography.Span>
               {copyWorker.map(({ id, topic, recipient }) => (
@@ -81,6 +81,7 @@ const SearchResults: React.FC<ISearchResultsProps> = (props) => {
               ))}
             </>
           )}
+          <div className="h-1.5"></div>
         </>
       )}
     </div>

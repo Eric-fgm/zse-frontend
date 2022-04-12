@@ -31,6 +31,7 @@ module.exports = {
       fontSize: {
         rg: "13px",
         md: "15px",
+        full: "100%",
       },
       spacing: {
         13: "52px",

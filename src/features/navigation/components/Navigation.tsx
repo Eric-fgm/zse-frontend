@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
 import ThemeContext from "providers/theme/ThemeContext";
@@ -24,6 +24,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
 
   const [isResultsOpened, setResultsOpened] = useState(false);
   const [isMobileSearchOpened, setMobileSearchOpened] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleInputFocus = () => {
     setResultsOpened(true);
@@ -42,12 +43,19 @@ const Navigation: React.FC<INavigationProps> = (props) => {
     setMobileSearchOpened(false);
   };
 
-  const handleSearch = debounce(
-    ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(fetchSearchResults("?q=" + target.value));
-    },
-    200
+  const handleSearch = useCallback(
+    debounce((value: string) => {
+      dispatch(fetchSearchResults("?q=" + value));
+    }, 200),
+    []
   );
+
+  const handleInputChange = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(target.value);
+    handleSearch(target.value);
+  };
 
   return (
     <nav className="relative px-2.5 flex items-center h-16 bg-elevation-primary border-b border-b-modifier-primary z-40 lg:px-4">
@@ -69,7 +77,8 @@ const Navigation: React.FC<INavigationProps> = (props) => {
             ref={searchInputRef}
             id="navigation-search"
             placeholder="Szukaj plików"
-            onChange={handleSearch}
+            value={searchValue}
+            onChange={handleInputChange}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
           />
