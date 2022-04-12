@@ -47,7 +47,7 @@ const FilesList: React.FC<IFilesListProps> = (props) => {
                 y="center"
                 className={`pl-2 overflow-hidden ${cellSize}`}
               >
-                <FileThumbnail type={type} className="px-0.5" />
+                <FileThumbnail type={type} />
                 <Typography variant="h4" className="text-rg truncate">
                   <a href={`${API_URL}/${path}`} rel="noreferrer">
                     {name}

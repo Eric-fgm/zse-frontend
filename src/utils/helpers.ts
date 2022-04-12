@@ -1,7 +1,7 @@
 import { EMediaQueries, TMediaQueriesBreakpoints } from "types";
 
 export const getFileThumbnailSrc = (type: string, size: number) => {
-  return `https://drive-thirdparty.googleusercontent.com/${size}/type/application/${type}`;
+  return `https://drive-thirdparty.googleusercontent.com/${size}/type/${type}`;
 };
 
 export const formatDate = (timestamp: number) => {
