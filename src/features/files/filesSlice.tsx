@@ -11,11 +11,13 @@ import {
 import { RootState } from "app/store/store";
 
 const initialState: {
+  uploadingBytes: { [key: string]: number };
   byId: { [key: string]: TFile };
   allIds: number[];
   pagination: TPagination;
   status: "idle" | "pending" | "error";
 } = {
+  uploadingBytes: {},
   byId: {},
   allIds: [],
   pagination: {
@@ -69,7 +71,7 @@ export const uploadFileChunks = createAsyncThunk(
         payload
       );
       if (!hasEnded) dispatch(uploadFileChunks({ ...payload, byteRangeStart }));
-      return { id: payload.fileId, bytes: byteRangeStart };
+      return { id: payload.fileId, bytes: byteRangeStart, hasEnded };
     } catch (err) {
       return rejectWithValue(err);
     }
@@ -89,7 +91,7 @@ export const uploadFileRequest = createAsyncThunk(
           byteRangeStart: 0,
         })
       );
-      return response;
+      return { ...response, size: file.size };
     } catch (err) {
       return rejectWithValue(err);
     }
@@ -129,10 +131,12 @@ const filesSlice = createSlice({
       const { fileId, uniqueId, ...file } = payload;
       state.byId[file.id] = file;
       state.allIds.unshift(file.id);
+      state.uploadingBytes[file.id] = 0;
     });
     builder.addCase(uploadFileChunks.fulfilled, (state, { payload }) => {
-      const { id, bytes } = payload;
-      if (bytes !== 0) state.byId[id].size = bytes;
+      const { id, bytes, hasEnded } = payload;
+      if (hasEnded) delete state.uploadingBytes[id];
+      else state.uploadingBytes[id] = bytes;
     });
   },
 });
@@ -143,6 +147,10 @@ export const selectFiles = ({ files }: RootState) => {
     files: filesOutput,
     isLoading: files.status === "pending",
   };
+};
+
+export const selectUploadingChunks = ({ files }: RootState) => {
+  return files.uploadingBytes;
 };
 
 export default filesSlice.reducer;

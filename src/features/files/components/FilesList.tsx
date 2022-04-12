@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useQuery from "hooks/useQuery";
 import FileThumbnail from "features/files/components/FileThumbnail";
 import {
@@ -7,13 +7,14 @@ import {
   fetchFiles,
   selectFiles,
   pinFile,
+  selectUploadingChunks,
 } from "features/files/filesSlice";
 import OptionsPopover from "features/files/components/OptionsPopover";
 import { TFile } from "features/files/types";
 import Table from "components/Table/Table";
 import Stack from "components/Stack/Stack";
 import Typography from "components/Typography/Typography";
-import { formatBytes, formatDate } from "utils/helpers";
+import { formatBytes, formatDate, formatUploadingBytes } from "utils/helpers";
 import { API_URL } from "utils/constants";
 
 export interface IFilesListProps {}
@@ -21,6 +22,7 @@ export interface IFilesListProps {}
 const FilesList: React.FC<IFilesListProps> = (props) => {
   const dispatch = useDispatch();
   const { isLoading, files } = useQuery(fetchFiles, selectFiles);
+  const uploadingChunks = useSelector(selectUploadingChunks);
 
   const handleDelete = (id: number) => () => {
     dispatch(deleteFiles([id]));
@@ -64,7 +66,9 @@ const FilesList: React.FC<IFilesListProps> = (props) => {
                 variant="h4"
                 className={`text-rg truncate ${cellSize}`}
               >
-                {formatBytes(size)}
+                {uploadingChunks[id] !== undefined
+                  ? formatUploadingBytes(uploadingChunks[id], size)
+                  : formatBytes(size)}
               </Typography>
             ),
           },

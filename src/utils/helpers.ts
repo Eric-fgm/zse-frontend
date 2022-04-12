@@ -21,6 +21,12 @@ export const formatBytes = (bytes: number, decimals = 2) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 };
 
+export const formatUploadingBytes = (uploadedBytes = 0, bytes = 0) => {
+  return `${formatBytes(uploadedBytes)} (${
+    bytes ? ((uploadedBytes / bytes) * 100).toFixed(0) : 0
+  }%)`;
+};
+
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const getMediaQueriesMinWidth = (
