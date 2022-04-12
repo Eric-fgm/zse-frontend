@@ -6,7 +6,9 @@ export const getFileThumbnailSrc = (type: string, size: number) => {
 
 export const formatDate = (timestamp: number) => {
   const dateEntity = new Date(timestamp * 1000);
-  return `${dateEntity.getDate()}/${dateEntity.getMonth()}/${dateEntity.getFullYear()}`;
+  return `${dateEntity.getDate()}/${
+    dateEntity.getMonth() + 1
+  }/${dateEntity.getFullYear()}`;
 };
 
 export const formatBytes = (bytes: number, decimals = 2) => {

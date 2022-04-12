@@ -37,6 +37,8 @@ const SearchInput = React.forwardRef<
       SpeechRecognition.stopListening();
       resetTranscript();
     } else {
+      // @ts-ignore
+      if (ref && ref.current) ref.current.focus();
       SpeechRecognition.startListening({ language: "pl-PL" });
     }
   }, [resetTranscript, listening]);
