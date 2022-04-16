@@ -21,8 +21,10 @@ export const GMAIL_RESTRICTIONS: {
     "application/vnd.openxmlformats-officedocument.presentationml.presentation":
       true,
     "application/vnd.ms-powerpoint": true,
+    "application/rar": true,
     "application/vnd.rar": true,
     "image/svg+xml": true,
+    "application/tar": true,
     "application/x-tar": true,
     "text/plain": true,
     "application/vnd.ms-excel": true,

@@ -1,5 +1,15 @@
 import { EMediaQueries, TMediaQueriesBreakpoints } from "types";
 
+export const getFileType = (name: string) => {
+  let type = "";
+  for (let i = name.length - 1; i >= 0; i--) {
+    const char = name[i];
+    if (char === ".") break;
+    type += char;
+  }
+  return type;
+};
+
 export const getFileThumbnailSrc = (type: string, size: number) => {
   return `https://drive-thirdparty.googleusercontent.com/${size}/type/${type}`;
 };

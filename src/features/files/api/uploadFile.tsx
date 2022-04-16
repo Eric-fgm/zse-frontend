@@ -1,5 +1,5 @@
 import { axios } from "lib/axios";
-import { sleep } from "utils/helpers";
+import { getFileType, sleep } from "utils/helpers";
 import { TFile } from "features/files/types";
 
 export type TUploadFileChunk = {
@@ -43,11 +43,14 @@ export const uploadFileChunksApi = async ({
 
 export const uploadFileRequestApi = async (payload: File) => {
   try {
+    let fileType = payload.type;
+    if (!fileType) fileType = `application/${getFileType(payload.name)}`;
+    console.log(fileType);
     const { data } = await axios.post<
       { fileId: number; uniqueId: string } & TFile
     >(
       `/files/upload-request`,
-      { name: payload.name, size: payload.size, type: payload.type },
+      { name: payload.name, size: payload.size, type: fileType },
       {
         headers: {
           "Content-Type": "application/json",
